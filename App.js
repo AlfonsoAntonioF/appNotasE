@@ -10,7 +10,6 @@ import TodasTareas from "./src/components/TodasTareas";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import { useState, useEffect } from "react";
 
-
 const App = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [tarea, setTarea] = useState([]);
@@ -25,7 +24,7 @@ const App = () => {
     setTarea([...tarea, newTarea]);
     toggleModal();
   };
-
+  
   const handleEliminarTarea = (tareaDelete) => {
     setTarea(tarea.filter((t) => t.id != tareaDelete.id));
   };
@@ -33,7 +32,12 @@ const App = () => {
   const handlerModCompleta = (id) => {
     setTarea(
       tarea.map((t) => {
-        if (t.id === id) return { ...t,fechaActualizacion: new Date().toLocaleString(), ...{ completa: !t.completa } };
+        if (t.id === id)
+          return {
+            ...t,
+            fechaActualizacion: new Date().toLocaleString(),
+            ...{ completa: !t.completa },
+          };
         return t;
       })
     );
